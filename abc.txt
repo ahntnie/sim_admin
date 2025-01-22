@@ -1,0 +1,82 @@
+function displayTable(data) {
+      const tableHead = document.querySelector('#dataTable thead');
+      const tableBody = document.querySelector('#dataTable tbody');
+
+      if (data.length === 0) {
+        alert("No data found in the file.");
+        return;
+      }
+
+
+      if (tableHead.innerHTML === '') {
+        const headers = ['STT', 'SIM', 'MỆNH', 'GIÁ'];
+        const headerRow = document.createElement('tr');
+        headers.forEach(header => {
+          const th = document.createElement('th');
+          th.textContent = header;
+          headerRow.appendChild(th);
+        });
+        tableHead.appendChild(headerRow);
+      }
+
+      data.forEach(row => {
+        const tr = document.createElement('tr');
+        tr.onclick = function () {
+          highlightRow(this);
+        };
+        row.slice(0, 4).forEach((cell, colIndex) => {
+          const td = document.createElement('td');
+
+          if (colIndex === 2) {
+            const normalizedValue = (cell || '').trim().toLowerCase();
+            const label = document.createElement('span');
+            label.style.padding = '5px 10px';
+            label.style.borderRadius = '30px';
+            label.style.display = 'inline-block';
+
+            switch (normalizedValue) {
+              case 'mộc':
+                label.style.backgroundColor = '#00b050';
+                label.textContent = 'Mộc';
+                label.style.color = 'white';
+                break;
+              case 'hỏa':
+                label.style.backgroundColor = '#ff0000';
+                label.textContent = 'Hỏa';
+                label.style.color = 'white';
+
+                break;
+              case 'thủy':
+                label.style.backgroundColor = '#00b0f0';
+                label.textContent = 'Thủy';
+                label.style.color = 'white';
+                break;
+              case 'thổ':
+                label.style.backgroundColor = '#808080';
+                label.textContent = 'Thổ';
+                label.style.color = 'white';
+
+                break;
+              case 'kim':
+                label.style.backgroundColor = '#ffc000';
+                label.textContent = 'Kim';
+                label.style.color = 'white';
+                break;
+            }
+
+            td.appendChild(label);
+          } else {
+            td.textContent = cell || '';
+          }
+
+          if (colIndex === 3) td.classList.add('gia');
+          if (colIndex === 1) td.classList.add('sim');
+
+          tr.appendChild(td);
+        });
+
+
+        tableBody.appendChild(tr);
+      });
+
+    }

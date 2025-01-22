@@ -1,0 +1,70 @@
+
+    function highlightRow(row) {
+      const rows = document.querySelectorAll('#dataTable tbody tr');
+
+      if (row.style.backgroundColor === 'yellow') {
+        row.style.backgroundColor = '';
+        return;
+      }
+      rows.forEach(r => {
+        r.style.backgroundColor = '';
+      });
+      row.style.backgroundColor = 'yellow';
+    }
+
+
+        document.addEventListener('keydown', function (event) {
+      if (event.key === 'Delete') {
+        const rows = document.querySelectorAll('#dataTable tbody tr');
+        rows.forEach(row => {
+          if (row.style.backgroundColor === 'yellow') {
+            row.remove();
+            deleteRow(row);
+          }
+        });
+      }
+    });
+
+
+
+        function filterTable() {
+      const searchSimInput = document.getElementById('searchSimInput').value.toLowerCase().trim();
+      const searchInput = document.getElementById('searchInput').value.toLowerCase();
+      const mệnhFilter = document.getElementById('mangFilter').value.toLowerCase();
+      const startFilter = document.getElementById('startFilter').value.toLowerCase();
+      const endFilter = document.getElementById('endFilter').value.toLowerCase();
+      const middleFilter = document.getElementById('middleFilter').value.toLowerCase();
+      const storedData = JSON.parse(localStorage.getItem('excelData')) || [];
+      const tableBody = document.querySelector('#dataTable tbody');
+
+
+      const filteredData = storedData.filter(row => {
+        const stt = (row[0] || '').toString().toLowerCase().trim();
+        const sim = (row[1] || '').toString().toLowerCase().trim().replace(/\./g, '');
+        const middle4Digits = sim.length >= 8 ? sim.slice(3, 7) : '';
+        const mệnh = (row[2] || '').toString().toLowerCase().trim();
+        const matchMệnh = mệnh.includes(mệnhFilter);
+        const matchSim = searchSimInput === '' || sim.includes(searchSimInput);
+        const matchSTT = searchInput === '' || stt == searchInput;
+        const matchStart = startFilter === '' || sim.startsWith(startFilter);
+        const matchMiddle = middleFilter === '' || middle4Digits === middleFilter;
+        const matchEnd = endFilter === '' || sim.endsWith(endFilter);
+
+        return matchSim && matchSTT && matchStart && matchMiddle && matchEnd;
+      });
+      isFiltering = true;
+      currentPage = 0;
+      displayTable(filteredData.slice(0, pageSize));
+      const dataTable = document.getElementById('dataTable'); // Phần đầu bảng
+      dataTable.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+
+    <select id="mangFilter" onchange="debouncedFilter()">
+      <option value="">Chọn Mệnh</option>
+      <option value="mộc">Mộc</option>
+      <option value="hỏa">Hỏa</option>
+      <option value="thủy">Thủy</option>
+      <option value="thổ">Thổ</option>
+      <option value="kim">Kim</option>
+    </select>
