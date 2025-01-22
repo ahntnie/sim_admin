@@ -418,7 +418,7 @@
 
         const jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1 });
 
-        excelData = jsonData.slice(1000);
+        excelData = jsonData.slice(1);
 
         localStorage.setItem('excelData', JSON.stringify(excelData));
 
@@ -469,8 +469,8 @@
       }
 
       const startIndex = currentPage * pageSize;
-      const endIndex = Math.min(startIndex + pageSize, data.length); // Giới hạn số lượng dữ liệu hiển thị
-      const pageData = data.slice(startIndex, endIndex); // Lấy dữ liệu trong phạm vi
+      const endIndex = Math.min(startIndex + pageSize, data.length);
+      const pageData = data.slice(startIndex, endIndex);
 
       const fragment = document.createDocumentFragment();
       pageData.forEach((row, index) => {
