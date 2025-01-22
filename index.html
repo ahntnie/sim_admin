@@ -675,7 +675,8 @@
         const matchSim = searchSimInput === '' || sim.includes(searchSimInput);
         const matchSTT = searchInput === '' || stt == searchInput;
         const matchStart = startFilter === '' || sim.startsWith(startFilter);
-        const matchMiddle = middleFilter === '' || middle4Digits === middleFilter;
+        const matchMiddle = middleFilter === '' || middle4Digits.includes(middleFilter);
+
         const matchEnd = endFilter === '' || sim.endsWith(endFilter);
 
         return matchSim && matchMệnh && matchSTT && matchStart && matchMiddle && matchEnd;
