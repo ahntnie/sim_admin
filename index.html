@@ -44,7 +44,7 @@
 
     table {
       position: relative;
-      top: -120px;
+      top: -20px;
       border-spacing: 15px 0;
       width: 18%;
       border-collapse: collapse;
@@ -741,7 +741,7 @@
         const middle4Digits = sim.length >= 8 ? sim.slice(3, 8) : '';
         const mệnh = (row[2] || '').toString().toLowerCase().trim();
         const matchMệnh = mệnhFilter === '' || mệnh.includes(mệnhFilter);
-        const matchSim = searchSimInput === '' || sim.includes(searchSimInput);
+        const matchSim = searchSimInput === '' || sim == searchSimInput;
         const matchSTT = searchInput === '' || stt == searchInput;
         const matchStart = startFilter === '' || sim.startsWith(startFilter);
         const matchMiddle = middleFilter === '' || middle4Digits.includes(middleFilter);
