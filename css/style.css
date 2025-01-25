@@ -11,9 +11,11 @@ h1 {
   margin-bottom: 20px;
   font-size: 2rem;
 }
+thead th {
+  z-index: 999;
+}
 
 input[type="file"] {
-  /* display: block; */
   margin: 0 auto 20px;
   padding: 10px;
   font-size: 1rem;
@@ -32,8 +34,8 @@ thead#pinnedRows {
   position: sticky;
   top: -1px;
   z-index: 3;
+  font-size: 12px;
 }
-
 table {
   position: relative;
   top: -20px;
@@ -50,7 +52,7 @@ td {
   border: 1px solid red;
   padding: 12px;
   text-align: center;
-  font-size: 1rem;
+
   transition: background-color red 0.3s ease;
 }
 
