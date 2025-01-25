@@ -51,8 +51,6 @@ th,
 td {
   border: 1px solid red;
   text-align: center;
-
-  transition: background-color red 0.3s ease;
 }
 
 td:nth-child(1),
