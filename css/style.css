@@ -58,9 +58,8 @@ table {
   text-align: center;
 }
 
-th,
 td {
-  border: 1px solid red;
+  border: 1px solid rgb(255, 196, 196);
   text-align: center;
   transition: background-color red 0.3s ease;
 }
@@ -262,8 +261,6 @@ th {
     width: 16%;
     min-width: 16%;
   }
-
-  th,
   td {
     font-size: 0.9rem;
   }
